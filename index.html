@@ -1770,6 +1770,48 @@
           </div>
         </div>
       </section>
+      <!-- ============== PAGE: PREBOOK ============== -->
+<section id="page-prebook" class="page-section">
+  <div style="padding: 120px 24px; max-width: 1100px; margin: auto">
+
+    <div style="text-align:center; margin-bottom:60px;">
+      <h2 style="font-size:clamp(2rem,5vw,3rem); font-weight:600;">
+        SpreTech Macropad
+      </h2>
+      <p style="color:#4a4aff; margin-top:10px;">
+        9 Keys. Infinite Possibilities.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;">
+
+      <!-- IMAGE -->
+      <div>
+        <img src="assets/macroai.jpeg" style="width:100%; border-radius:20px;">
+      </div>
+
+      <!-- FORM -->
+      <div class="gradient-border" style="padding:30px; border-radius:20px;">
+        <h3>Pre-Book Now</h3>
+
+        <form id="prebook-form">
+          <input type="text" id="pb-name" placeholder="Name" required style="width:100%; margin:10px 0; padding:12px;">
+          <input type="tel" id="pb-phone" placeholder="WhatsApp Number" required style="width:100%; margin:10px 0; padding:12px;">
+          <input type="email" id="pb-email" placeholder="Email (Optional)" style="width:100%; margin:10px 0; padding:12px;">
+
+          <button type="submit" style="width:100%; padding:14px; background:#4a4aff; color:#fff; border:none; border-radius:10px;">
+            Pre-Book Now
+          </button>
+        </form>
+
+        <p style="margin-top:10px; font-size:0.85rem; opacity:.6;">
+          ⚡ First 10 customers – ₹1999
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
       <!-- ============== PAGE: SERVICES ============== -->
       <section id="page-services" class="page-section">
         <div
@@ -2439,7 +2481,10 @@
                 data-page="services"
                 style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
                 >Services</span
-              >
+              ><span class="page-nav-item text-xs" data-page="prebook"
+style="color: rgba(245, 245, 247, 0.35); cursor: pointer">
+PreBook
+</span>
               <span
                 class="page-nav-item text-xs"
                 data-page="support"
@@ -2886,6 +2931,28 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 </script>
+<script>
+document.getElementById("prebook-form")?.addEventListener("submit", function(e){
+  e.preventDefault();
 
+  const name = document.getElementById("pb-name").value;
+  const phone = document.getElementById("pb-phone").value;
+  const email = document.getElementById("pb-email").value || "Not provided";
+
+  const msg =
+`SpreTech Macropad Pre-Booking
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}`;
+
+  const url = "https://wa.me/919042750118?text=" + encodeURIComponent(msg);
+
+  window.open(url, "_blank");
+});
+</script>
+<a href="prebook.html" style="position:fixed; bottom:30px; right:30px; background:#f7aa33; color:#000; padding:15px 25px; border-radius:50px; text-decoration:none; font-weight:bold;">
+  Pre-Book Now
+</a>
   </body>
 </html>
