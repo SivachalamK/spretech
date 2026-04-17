@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SpreTech 9-Key Programmable Macropad | Pre-Booking</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #050505;
+        --card: #111;
+        --accent: #f7aa33;
+        --text: #fff;
+        --sub: #aaa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Outfit", sans-serif;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+      }
+
+      .logo {
+        font-weight: 800;
+        font-size: 1.3rem;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        background: var(--accent);
+        color: black;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* HERO */
+      .hero {
+        padding: 140px 20px 80px;
+        display: flex;
+        gap: 60px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-text {
+        max-width: 500px;
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
+
+      .hero-text p {
+        color: var(--sub);
+        margin-bottom: 15px;
+      }
+
+      .hero img {
+        width: 350px;
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+      }
+
+      /* FORM */
+      .form-section {
+        padding: 60px 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .form-card {
+        background: var(--card);
+        padding: 30px;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .form-card h2 {
+        margin-bottom: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        background: #222;
+        border: none;
+        color: white;
+        border-radius: 8px;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px;
+        background: var(--accent);
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="logo">SpreTech</div>
+      <a href="prebook.html" class="btn">Pre-Book</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>SpreTech Macropad</h1>
+        <p>9 Keys. Infinite Possibilities.</p>
+        <p>Built for speed. Made for creators.</p>
+      </div>
+
+      <img src="micropad.jpeg" />
+    </section>
+
+    <!-- FORM -->
+    <section id="form" class="form-section">
+      <div class="form-card">
+        <h2>Pre-Booking</h2>
+
+        <form id="prebook-form">
+          <input type="text" id="pb-name" placeholder="Name" required />
+          <input
+            type="tel"
+            id="pb-phone"
+            placeholder="WhatsApp Number"
+            required
+          />
+          <input type="email" id="pb-email" placeholder="Email (Optional)" />
+
+          <button type="submit">Pre-Book Now</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- JS (ALREADY INSIDE - NO NEED TO ADD ANYWHERE ELSE) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("prebook-form");
+
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("pb-name").value;
+            const phone = document.getElementById("pb-phone").value;
+            const email =
+              document.getElementById("pb-email").value || "Not provided";
+
+            const msg = `SpreTech Macropad Pre-Booking
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}`;
+
+            const url =
+              "https://wa.me/919042750118?text=" + encodeURIComponent(msg);
+
+            window.open(url, "_blank");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

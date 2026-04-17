@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpreTech — Innovation Redefined</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&family=Sora:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+      body {
+        font-family: "Outfit", "SF Pro Display", -apple-system, sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(74, 74, 255, 0.16), transparent 32%),
+          radial-gradient(circle at bottom right, rgba(120, 120, 255, 0.12), transparent 28%),
+          #000;
+        color: #f5f5f7;
+        overflow-x: hidden;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 3px;
+      }
+
+      .grain-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9998;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      }
+
+      .aurora {
+        position: fixed;
+        inset: -20%;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(74,74,255,0.22), transparent 28%),
+          radial-gradient(circle at 80% 30%, rgba(120,120,255,0.16), transparent 26%),
+          radial-gradient(circle at 50% 80%, rgba(255,255,255,0.05), transparent 24%);
+        filter: blur(55px);
+        animation: drift 18s ease-in-out infinite alternate;
+      }
+      @keyframes drift {
+        from { transform: translate3d(-1%, -1%, 0) scale(1); }
+        to { transform: translate3d(1%, 1%, 0) scale(1.08); }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(60px);
+        filter: blur(8px);
+        transition:
+          opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+      .reveal-delay-1 { transition-delay: 0.15s; }
+      .reveal-delay-2 { transition-delay: 0.3s; }
+      .reveal-delay-3 { transition-delay: 0.45s; }
+      .reveal-delay-4 { transition-delay: 0.6s; }
+
+      .stagger-children > * {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .stagger-children.visible > * {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .stagger-children.visible > *:nth-child(1) { transition-delay: 0.08s; }
+      .stagger-children.visible > *:nth-child(2) { transition-delay: 0.16s; }
+      .stagger-children.visible > *:nth-child(3) { transition-delay: 0.24s; }
+      .stagger-children.visible > *:nth-child(4) { transition-delay: 0.32s; }
+      .stagger-children.visible > *:nth-child(5) { transition-delay: 0.4s; }
+      .stagger-children.visible > *:nth-child(6) { transition-delay: 0.48s; }
+
+      .hero-glow {
+        position: absolute;
+        width: 760px;
+        height: 760px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, rgba(100, 100, 255, 0.22) 0%, rgba(100, 100, 255, 0.08) 24%, transparent 68%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        animation: pulse-glow 7s ease-in-out infinite;
+      }
+      @keyframes pulse-glow {
+        0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.16); }
+      }
+
+      .product-float { animation: float 6.5s ease-in-out infinite; }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotateX(2deg); }
+        50% { transform: translateY(-18px) rotateX(-2deg); }
+      }
+
+      .shimmer-text {
+        background: linear-gradient(
+          90deg,
+          #f5f5f7 0%,
+          #a1a1a6 25%,
+          #f5f5f7 50%,
+          #a1a1a6 75%,
+          #f5f5f7 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 4s linear infinite;
+      }
+      @keyframes shimmer {
+        to { background-position: -200% center; }
+      }
+
+      .gradient-border {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03), rgba(100,100,255,0.18));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      .nav-blur {
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: rgba(0, 0, 0, 0.72);
+      }
+
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+      }
+
+      .card-hover {
+        transition:
+          transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.5s ease,
+          border-color 0.5s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow: 0 34px 70px -18px rgba(0, 0, 0, 0.72);
+      }
+
+      .founder-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 600;
+        color: rgba(255,255,255,0.4);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .product-bg-glow {
+        background: radial-gradient(ellipse at center, rgba(60,60,120,0.17) 0%, transparent 60%);
+      }
+
+      .scroll-indicator { animation: scroll-bounce 2s ease-in-out infinite; }
+      @keyframes scroll-bounce {
+        0%, 100% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(10px); opacity: 0.5; }
+      }
+
+      .page-nav-item {
+        position: relative;
+        cursor: pointer;
+        padding: 8px 0;
+        transition: color 0.25s ease, opacity 0.25s ease;
+      }
+      .page-nav-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #f5f5f7;
+        transition: width 0.3s ease;
+      }
+      .page-nav-item:hover::after,
+      .page-nav-item.active::after {
+        width: 100%;
+      }
+      .page-nav-item.active {
+        color: #fff !important;
+      }
+
+      .page-section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+      .page-section.active {
+        display: block;
+        opacity: 1;
+      }
+
+      .partner-logo {
+        width: 120px;
+        height: 60px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: rgba(255,255,255,0.25);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.4s ease;
+      }
+      .partner-logo:hover {
+        background: rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.12);
+      }
+
+      .spec-bar {
+        height: 3px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .spec-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #4a4aff, #7a7aff);
+        transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        width: 0;
+      }
+      .spec-bar-fill.animate {
+        width: var(--fill);
+      }
+
+      .service-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(100,100,255,0.15), rgba(100,100,255,0.05));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(100,100,255,0.1);
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .accordion-content.open {
+        max-height: 300px;
+      }
+      .accordion-icon {
+        transition: transform 0.3s ease;
+      }
+      .accordion-icon.open {
+        transform: rotate(45deg);
+      }
+
+      .mobile-menu {
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .mobile-menu.open {
+        transform: translateY(0);
+      }
+
+      .type-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: #4a4aff;
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+        vertical-align: text-bottom;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .btn-glow {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .btn-glow::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(135deg, #4a4aff, #7a7aff, #4a4aff);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .btn-glow:hover::before {
+        opacity: 1;
+      }
+      .btn-glow:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 40px rgba(74, 74, 255, 0.24);
+      }
+
+      .glass-panel {
+        background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(18px);
+      }
+
+      .magnetic {
+        transition: transform 0.25s ease;
+      }
+
+      .shine {
+        position: relative;
+        overflow: hidden;
+      }
+      .shine::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.14), transparent);
+        transform: skewX(-18deg);
+      }
+      .shine:hover::after {
+        animation: sweep 0.8s ease;
+      }
+      @keyframes sweep {
+        from { left: -120%; }
+        to { left: 160%; }
+      }
+    </style>
+    <style>
+      body { box-sizing: border-box; }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+  <body class="h-full">
+    <div class="grain-overlay"></div>
+    <div class="aurora"></div>      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <!-- PAGE: SHOP -->
+      <section id="page-shop" class="page-section">
+        <div class="w-full" style="padding: 120px 24px 80px">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+              <p
+                class="reveal text-xs tracking-widest uppercase mb-4"
+                style="color: rgba(100, 100, 255, 0.6); letter-spacing: 0.3em"
+              >
+                Shop
+              </p>
+              <h2
+                class="reveal reveal-delay-1"
+                style="
+                  font-family: 'Sora', sans-serif;
+                  font-size: clamp(1.8rem, 4.5vw, 3rem);
+                  font-weight: 600;
+                  letter-spacing: -0.02em;
+                "
+              >
+                Our Products
+              </h2>
+              <p
+                class="reveal reveal-delay-2"
+                style="
+                  color: rgba(245, 245, 247, 0.4);
+                  font-size: 0.95rem;
+                  margin-top: 14px;
+                  font-weight: 300;
+                "
+              >
+                Premium designed products built for performance and simplicity.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
+              <div
+                class="gradient-border card-hover glass-panel"
+                style="border-radius: 20px; overflow: hidden"
+              >
+                <div
+                  style="
+                    aspect-ratio: 4/3;
+                    background: linear-gradient(145deg, #0a0a1a, #111128);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 24px;
+                  "
+                >
+                  <img
+                    src="micropad.jpeg"
+                    alt="SpreTech MacroPad"
+                    class="product-float"
+                    style="width: min(240px, 80%); height: auto; border-radius: 18px"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3
+                      style="
+                        font-family: 'Sora', sans-serif;
+                        font-weight: 600;
+                        font-size: 1.05rem;
+                      "
+                    >
+                      SpreTech MacroPad
+                    </h3>
+                    <span
+                      class="px-3 py-1 rounded-full text-[11px]"
+                      style="background: rgba(74,74,255,0.16); color: #aab0ff"
+                    >
+                      Available
+                    </span>
+                  </div>
+                  <p
+                    style="
+                      font-size: 0.85rem;
+                      color: rgba(245, 245, 247, 0.42);
+                      margin-top: 10px;
+                      line-height: 1.6;
+                    "
+                  >
+                    Compact programmable macropad with custom control app and USB-C connectivity.
+                  </p>
+                  <div class="flex items-center justify-between mt-6">
+                    <span style="font-weight: 600; font-size: 1.15rem">₹2,400</span>
+                    <button
+                      class="btn-glow shine px-4 py-2 rounded-full text-xs font-medium"
+                      style="background: #f5f5f7; color: #000"
+                      onclick="navigateTo('support')"
+                    >
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gradient-border card-hover glass-panel"
+                style="border-radius: 20px; overflow: hidden"
+              >
+                <div
+                  style="
+                    aspect-ratio: 4/3;
+                    background: linear-gradient(145deg, #0a0a1a, #111128);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 24px;
+                  "
+                >
+                  <span style="font-size: 92px">🤖</span>
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3
+                      style="
+                        font-family: 'Sora', sans-serif;
+                        font-weight: 600;
+                        font-size: 1.05rem;
+                      "
+                    >
+                      MobiArm
+                    </h3>
+                    <span
+                      class="px-3 py-1 rounded-full text-[11px]"
+                      style="background: rgba(255,255,255,0.06); color: rgba(245,245,247,0.45)"
+                    >
+                      Coming Soon
+                    </span>
+                  </div>
+                  <p
+                    style="
+                      font-size: 0.85rem;
+                      color: rgba(245, 245, 247, 0.42);
+                      margin-top: 10px;
+                      line-height: 1.6;
+                    "
+                  >
+                    Intelligent robotic arm concept with precise motion control and adaptive movement.
+                  </p>
+                  <div class="flex items-center justify-between mt-6">
+                    <span style="font-weight: 600; font-size: 1.15rem">TBA</span>
+                    <button
+                      class="px-4 py-2 rounded-full text-xs font-medium"
+                      style="background: rgba(255,255,255,0.06); color: rgba(245,245,247,0.7)"
+                      onclick="navigateTo('support')"
+                    >
+                      Notify Me
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="gradient-border card-hover glass-panel"
+                style="border-radius: 20px; overflow: hidden"
+              >
+                <div
+                  style="
+                    aspect-ratio: 4/3;
+                    background: linear-gradient(145deg, #0a0a1a, #111128);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 24px;
+                  "
+                >
+                  <img
+                    src="custom.jpg"
+                    alt="SpreTech Custom App"
+                    style="width: min(240px, 80%); height: auto; border-radius: 18px"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3
+                      style="
+                        font-family: 'Sora', sans-serif;
+                        font-weight: 600;
+                        font-size: 1.05rem;
+                      "
+                    >
+                      Custom App
+                    </h3>
+                    <span
+                      class="px-3 py-1 rounded-full text-[11px]"
+                      style="background: rgba(74,74,255,0.16); color: #aab0ff"
+                    >
+                      Beta
+                    </span>
+                  </div>
+                  <p
+                    style="
+                      font-size: 0.85rem;
+                      color: rgba(245, 245, 247, 0.42);
+                      margin-top: 10px;
+                      line-height: 1.6;
+                    "
+                  >
+                    A refined companion app designed to manage devices, profiles, and automation flows.
+                  </p>
+                  <div class="flex items-center justify-between mt-6">
+                    <span style="font-weight: 600; font-size: 1.15rem">TBA</span>
+                    <button
+                      class="px-4 py-2 rounded-full text-xs font-medium"
+                      style="background: rgba(255,255,255,0.06); color: rgba(245,245,247,0.7)"
+                      onclick="navigateTo('support')"
+                    >
+                      Join Waitlist
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="reveal mt-14 p-8 gradient-border glass-panel"
+              style="border-radius: 20px"
+            >
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                  <p style="font-size: 1.7rem; font-weight: 700">10</p>
+                  <p style="font-size: 0.78rem; color: rgba(245,245,247,0.38); margin-top: 6px">
+                    Programmable Keys
+                  </p>
+                </div>
+                <div class="text-center">
+                  <p style="font-size: 1.7rem; font-weight: 700">USB-C</p>
+                  <p style="font-size: 0.78rem; color: rgba(245,245,247,0.38); margin-top: 6px">
+                    Fast Connectivity
+                  </p>
+                </div>
+                <div class="text-center">
+                  <p style="font-size: 1.7rem; font-weight: 700">App</p>
+                  <p style="font-size: 0.78rem; color: rgba(245,245,247,0.38); margin-top: 6px">
+                    Custom Control
+                  </p>
+                </div>
+                <div class="text-center">
+                  <p style="font-size: 1.7rem; font-weight: 700">Plug</p>
+                  <p style="font-size: 0.78rem; color: rgba(245,245,247,0.38); margin-top: 6px">
+                    Ready to Use
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <!-- PAGE: SERVICES -->
+      <section id="page-services" class="page-section">
+        <div class="w-full" style="padding: 120px 24px 80px">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <p
+                class="reveal text-xs tracking-widest uppercase mb-4"
+                style="color: rgba(100, 100, 255, 0.6); letter-spacing: 0.3em"
+              >
+                What We Do
+              </p>
+              <h2
+                class="reveal reveal-delay-1"
+                style="
+                  font-family: 'Sora', sans-serif;
+                  font-size: clamp(1.8rem, 4.5vw, 3rem);
+                  font-weight: 600;
+                  letter-spacing: -0.02em;
+                "
+              >
+                Our Services
+              </h2>
+              <p
+                class="reveal reveal-delay-2"
+                style="
+                  color: rgba(245, 245, 247, 0.4);
+                  font-size: 0.95rem;
+                  margin-top: 14px;
+                  font-weight: 300;
+                "
+              >
+                Clean, modern service experiences designed for premium feel and clarity.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
+              <div class="gradient-border glass-panel card-hover p-8" style="border-radius: 22px">
+                <div class="service-icon mb-6">
+                  <i data-lucide="globe-2" style="width: 22px; height: 22px; color: #aab0ff"></i>
+                </div>
+                <h3 style="font-family: 'Sora', sans-serif; font-size: 1.15rem; font-weight: 600">
+                  Website Development
+                </h3>
+                <p style="color: rgba(245,245,247,0.42); font-size: 0.9rem; line-height: 1.7; margin-top: 12px">
+                  Premium responsive websites, landing pages, and business showcases with elegant motion.
+                </p>
+                <button
+                  class="btn-glow shine mt-6 px-5 py-3 rounded-full text-xs font-medium"
+                  style="background: #f5f5f7; color: #000"
+                  onclick="openWhatsApp7339()"
+                >
+                  Book Now
+                </button>
+              </div>
+
+              <div class="gradient-border glass-panel card-hover p-8" style="border-radius: 22px">
+                <div class="service-icon mb-6">
+                  <i data-lucide="layers-3" style="width: 22px; height: 22px; color: #aab0ff"></i>
+                </div>
+                <h3 style="font-family: 'Sora', sans-serif; font-size: 1.15rem; font-weight: 600">
+                  Product UI Design
+                </h3>
+                <p style="color: rgba(245,245,247,0.42); font-size: 0.9rem; line-height: 1.7; margin-top: 12px">
+                  Sophisticated product interfaces, app concepts, and brand visuals with a luxury look.
+                </p>
+                <button
+                  class="btn-glow shine mt-6 px-5 py-3 rounded-full text-xs font-medium"
+                  style="background: #f5f5f7; color: #000"
+                  onclick="openWhatsApp7339()"
+                >
+                  Start Project
+                </button>
+              </div>
+
+              <div class="gradient-border glass-panel card-hover p-8" style="border-radius: 22px">
+                <div class="service-icon mb-6">
+                  <i data-lucide="settings-2" style="width: 22px; height: 22px; color: #aab0ff"></i>
+                </div>
+                <h3 style="font-family: 'Sora', sans-serif; font-size: 1.15rem; font-weight: 600">
+                  Smart Hardware
+                </h3>
+                <p style="color: rgba(245,245,247,0.42); font-size: 0.9rem; line-height: 1.7; margin-top: 12px">
+                  Embedded devices, automation tools, and hardware concepts that feel polished and premium.
+                </p>
+                <button
+                  class="btn-glow shine mt-6 px-5 py-3 rounded-full text-xs font-medium"
+                  style="background: #f5f5f7; color: #000"
+                  onclick="navigateTo('support')"
+                >
+                  Talk to Team
+                </button>
+              </div>
+            </div>
+
+            <div class="reveal mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="glass-panel gradient-border p-6 rounded-[22px]">
+                <p style="font-size: 2rem; font-weight: 700">01</p>
+                <p style="margin-top: 10px; color: rgba(245,245,247,0.42); line-height: 1.7">
+                  Discovery, planning, and premium direction.
+                </p>
+              </div>
+              <div class="glass-panel gradient-border p-6 rounded-[22px]">
+                <p style="font-size: 2rem; font-weight: 700">02</p>
+                <p style="margin-top: 10px; color: rgba(245,245,247,0.42); line-height: 1.7">
+                  Design, development, and interaction polish.
+                </p>
+              </div>
+              <div class="glass-panel gradient-border p-6 rounded-[22px]">
+                <p style="font-size: 2rem; font-weight: 700">03</p>
+                <p style="margin-top: 10px; color: rgba(245,245,247,0.42); line-height: 1.7">
+                  Delivery, support, and continuous improvement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <!-- PAGE: SUPPORT -->
+      <section id="page-support" class="page-section">
+        <div class="w-full" style="padding: 120px 24px 80px">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+              <p
+                class="reveal text-xs tracking-widest uppercase mb-4"
+                style="color: rgba(100, 100, 255, 0.6); letter-spacing: 0.3em"
+              >
+                Support
+              </p>
+              <h2
+                class="reveal reveal-delay-1"
+                style="
+                  font-family: 'Sora', sans-serif;
+                  font-size: clamp(1.8rem, 4.5vw, 3rem);
+                  font-weight: 600;
+                  letter-spacing: -0.02em;
+                "
+              >
+                Help &amp; Support
+              </h2>
+              <p
+                class="reveal reveal-delay-2"
+                style="
+                  color: rgba(245, 245, 247, 0.4);
+                  font-size: 0.95rem;
+                  margin-top: 16px;
+                  font-weight: 300;
+                "
+              >
+                Find answers quickly or contact our team with a premium support experience.
+              </p>
+            </div>              </div>
+            </div>
+
+            <div class="text-center mt-14">
+              <p
+                class="reveal"
+                style="
+                  color: rgba(245, 245, 247, 0.35);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                "
+              >
+                Need something specific? Send us a message and we’ll respond as
+                soon as possible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="w-full"
+        style="
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 48px 24px;
+        "
+      >
+        <div class="max-w-5xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-6"
+          >
+            <div>
+              <p
+                id="footer-logo"
+                style="
+                  font-family: &quot;Sora&quot;, sans-serif;
+                  font-weight: 600;
+                  font-size: 0.85rem;
+                  letter-spacing: 0.15em;
+                "
+              >
+                SPRETECH
+              </p>
+              <p
+                id="footer-text-display"
+                style="
+                  font-size: 0.75rem;
+                  color: rgba(245, 245, 247, 0.25);
+                  margin-top: 6px;
+                "
+              >
+                © 2025 SpreTech. All rights reserved.
+              </p>
+            </div>
+            <div class="flex gap-6">
+              <span
+                class="page-nav-item text-xs"
+                data-page="home"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Home</span
+              >
+              <span
+                class="page-nav-item text-xs"
+                data-page="shop"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Shop</span
+              >
+              <span
+                class="page-nav-item text-xs"
+                data-page="services"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Services</span
+              >
+              <span
+                class="page-nav-item text-xs"
+                data-page="support"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Support</span
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+                    type="submit"
+                class="self-start px-8 py-3 rounded-full text-sm font-medium"
+                style="background: #f5f5f7; color: #000; transition: all 0.3s"
+                onmouseover="this.style.background = '#e0e0e2'"
+                onmouseout="this.style.background = '#f5f5f7'"
+              >
+                Send Message
+              </button>
+              <p
+                id="form-success"
+                style="
+                  display: none;
+                  font-size: 0.85rem;
+                  color: rgba(100, 200, 100, 0.8);
+                  margin-top: 4px;
+                "
+              >
+                Message sent successfully! We'll get back to you soon.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="w-full"
+        style="
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 48px 24px;
+        "
+      >
+        <div class="max-w-5xl mx-auto">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+              <p
+                id="footer-logo"
+                style="
+                  font-family: 'Sora', sans-serif;
+                  font-weight: 600;
+                  font-size: 0.85rem;
+                  letter-spacing: 0.15em;
+                "
+              >
+                SPRETECH
+              </p>
+              <p
+                id="footer-text-display"
+                style="
+                  font-size: 0.75rem;
+                  color: rgba(245, 245, 247, 0.25);
+                  margin-top: 6px;
+                "
+              >
+                © 2025 SpreTech. All rights reserved.
+              </p>
+            </div>
+            <div class="flex gap-6">
+              <span
+                class="page-nav-item text-xs"
+                data-page="home"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Home</span
+              >
+              <span
+                class="page-nav-item text-xs"
+                data-page="shop"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Shop</span
+              >
+              <span
+                class="page-nav-item text-xs"
+                data-page="services"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Services</span
+              >
+              <span
+                class="page-nav-item text-xs"
+                data-page="support"
+                style="color: rgba(245, 245, 247, 0.35); cursor: pointer"
+                >Support</span
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const defaultConfig = {
+        background_color: "#000000",
+        surface_color: "#0a0a1a",
+        text_color: "#f5f5f7",
+        primary_action_color: "#f5f5f7",
+        accent_color: "#4a4aff",
+        font_family: "Outfit",
+        font_size: 16,
+        hero_tagline: "Innovation\nRedefined.",
+        hero_subtitle:
+          "Building innovative electronic gadgets and intelligent technology solutions that simplify everyday tasks.",
+        product_name: "MacroPad",
+        product_price: "₹2,400",
+        about_text:
+          "SpreTech is a technology startup focused on designing and building innovative electronics, smart devices, and practical automation tools. Our goal is to develop products that merge creativity, functionality, and real-world usability.",
+        footer_text: "© 2025 SpreTech. All rights reserved.",
+        whatsapp_number: "+919876543210",
+      };
+
+      function applyConfig(config) {
+        const c = { ...defaultConfig, ...config };
+        const wrapper = document.getElementById("app-wrapper");
+        if (wrapper) wrapper.style.background = c.background_color;
+
+        document.querySelectorAll("h1,h2,h3,.founder-avatar").forEach((el) => {
+          if (!el.classList.contains("shimmer-text")) el.style.color = c.text_color;
+        });
+
+        document.querySelectorAll(".service-icon").forEach((el) => {
+          el.style.background = `linear-gradient(135deg, ${c.accent_color}25, ${c.accent_color}10)`;
+          el.style.borderColor = `${c.accent_color}1a`;
+        });
+
+        document.body.style.fontFamily =
+          `${c.font_family}, 'SF Pro Display', -apple-system, sans-serif`;
+
+        const taglineEl = document.getElementById("hero-tagline");
+        if (taglineEl) taglineEl.innerHTML = c.hero_tagline.replace(/\n/g, "<br>");
+
+        const subtitleEl = document.getElementById("hero-subtitle");
+        if (subtitleEl) subtitleEl.textContent = c.hero_subtitle;
+
+        const productNameEl = document.getElementById("product-name-display");
+        if (productNameEl) productNameEl.textContent = c.product_name;
+
+        const productPriceEl = document.getElementById("product-price-display");
+        if (productPriceEl) productPriceEl.textContent = c.product_price;
+
+        const aboutEl = document.getElementById("about-text");
+        if (aboutEl) aboutEl.textContent = c.about_text;
+
+        const footerEl = document.getElementById("footer-text-display");
+        if (footerEl) footerEl.textContent = c.footer_text;
+      }
+
+      function openWhatsApp() {
+        const config = window.elementSdk?.config || defaultConfig;
+        const phoneNumber = config.whatsapp_number || defaultConfig.whatsapp_number;
+        const cleanNumber = phoneNumber.replace(/[^0-9]/g, "");
+        const message = encodeURIComponent(
+          "Hi SpreTech! I'm interested in your website development service. Can you help me?"
+        );
+        window.open(
+          `https://wa.me/${cleanNumber}?text=${message}`,
+          "_blank",
+          "noopener noreferrer"
+        );
+      }
+
+      const navItems = document.querySelectorAll(".page-nav-item");
+      const pages = document.querySelectorAll(".page-section");
+
+      function navigateTo(pageName) {
+        pages.forEach((p) => {
+          p.classList.remove("active");
+          p.style.opacity = "0";
+        });
+        navItems.forEach((n) => n.classList.remove("active"));
+
+        const target = document.getElementById("page-" + pageName);
+        if (target) {
+          target.classList.add("active");
+          setTimeout(() => (target.style.opacity = "1"), 50);
+        }
+
+        navItems.forEach((n) => {
+          if (n.dataset.page === pageName) n.classList.add("active");
+        });
+
+        document.getElementById("app-wrapper").scrollTo({ top: 0, behavior: "smooth" });
+        document.getElementById("mobile-menu").classList.remove("open");
+        setTimeout(initRevealObserver, 200);
+      }
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => navigateTo(item.dataset.page));
+      });
+
+      document.querySelector(".btn-glow")?.addEventListener("click", () => navigateTo("shop"));
+
+      document.getElementById("mobile-menu-btn").addEventListener("click", () => {
+        document.getElementById("mobile-menu").classList.toggle("open");
+      });
+
+      document.querySelectorAll(".accordion-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector(".accordion-icon");
+          const isOpen = content.classList.contains("open");
+
+          document.querySelectorAll(".accordion-content").forEach((c) => c.classList.remove("open"));
+          document.querySelectorAll(".accordion-icon").forEach((i) => i.classList.remove("open"));
+          document.querySelectorAll(".accordion-btn").forEach((b) => b.setAttribute("aria-expanded", "false"));
+
+          if (!isOpen) {
+            content.classList.add("open");
+            icon.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      document.getElementById("contact-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const success = document.getElementById("form-success");
+        success.style.display = "block";
+        e.target.reset();
+        setTimeout(() => (success.style.display = "none"), 4000);
+      });
+
+      function initRevealObserver() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+        );
+
+        document.querySelectorAll(".reveal, .stagger-children").forEach((el) => {
+          if (!el.classList.contains("visible")) observer.observe(el);
+          else {
+            el.classList.remove("visible");
+            observer.observe(el);
+          }
+        });
+      }
+
+      applyConfig(defaultConfig);
+      initRevealObserver();
+      lucide.createIcons();
+    </script>
+    <script>
+      const defaultConfig = {
+        background_color: "#000000",
+        surface_color: "#0a0a1a",
+        text_color: "#f5f5f7",
+        primary_action_color: "#f5f5f7",
+        accent_color: "#4a4aff",
+        font_family: "Outfit",
+        font_size: 16,
+        hero_tagline: "Innovation\nRedefined.",
+        hero_subtitle:
+          "Building innovative electronic gadgets and intelligent technology solutions that simplify everyday tasks.",
+        product_name: "MacroPad",
+        product_price: "₹2,400",
+        about_text:
+          "SpreTech is a technology startup focused on designing and building innovative electronics, smart devices, and practical automation tools. Our goal is to develop products that merge creativity, functionality, and real-world usability.",
+        footer_text: "© 2025 SpreTech. All rights reserved.",
+        whatsapp_number: "+919876543210",
+      };
+
+      function applyConfig(config) {
+        const c = { ...defaultConfig, ...config };
+        const wrapper = document.getElementById("app-wrapper");
+        if (wrapper) wrapper.style.background = c.background_color;
+
+        document.querySelectorAll("h1,h2,h3,.founder-avatar").forEach((el) => {
+          if (!el.classList.contains("shimmer-text")) el.style.color = c.text_color;
+        });
+
+        document.querySelectorAll(".service-icon").forEach((el) => {
+          el.style.background = `linear-gradient(135deg, ${c.accent_color}25, ${c.accent_color}10)`;
+          el.style.borderColor = `${c.accent_color}1a`;
+        });
+
+        document.body.style.fontFamily =
+          `${c.font_family}, 'SF Pro Display', -apple-system, sans-serif`;
+
+        const taglineEl = document.getElementById("hero-tagline");
+        if (taglineEl) taglineEl.innerHTML = c.hero_tagline.replace(/\n/g, "<br>");
+
+        const subtitleEl = document.getElementById("hero-subtitle");
+        if (subtitleEl) subtitleEl.textContent = c.hero_subtitle;
+
+        const productNameEl = document.getElementById("product-name-display");
+        if (productNameEl) productNameEl.textContent = c.product_name;
+
+        const productPriceEl = document.getElementById("product-price-display");
+        if (productPriceEl) productPriceEl.textContent = c.product_price;
+
+        const aboutEl = document.getElementById("about-text");
+        if (aboutEl) aboutEl.textContent = c.about_text;
+
+        const footerEl = document.getElementById("footer-text-display");
+        if (footerEl) footerEl.textContent = c.footer_text;
+      }
+
+      function openWhatsApp() {
+        const config = window.elementSdk?.config || defaultConfig;
+        const phoneNumber = config.whatsapp_number || defaultConfig.whatsapp_number;
+        const cleanNumber = phoneNumber.replace(/[^0-9]/g, "");
+        const message = encodeURIComponent(
+          "Hi SpreTech! I'm interested in your website development service. Can you help me?"
+        );
+        window.open(`https://wa.me/${cleanNumber}?text=${message}`, "_blank", "noopener noreferrer");
+      }
+
+      const navItems = document.querySelectorAll(".page-nav-item");
+      const pages = document.querySelectorAll(".page-section");
+
+      function navigateTo(pageName) {
+        pages.forEach((p) => {
+          p.classList.remove("active");
+          p.style.opacity = "0";
+        });
+        navItems.forEach((n) => n.classList.remove("active"));
+
+        const target = document.getElementById("page-" + pageName);
+        if (target) {
+          target.classList.add("active");
+          setTimeout(() => (target.style.opacity = "1"), 50);
+        }
+
+        navItems.forEach((n) => {
+          if (n.dataset.page === pageName) n.classList.add("active");
+        });
+
+        document.getElementById("app-wrapper").scrollTo({ top: 0, behavior: "smooth" });
+        document.getElementById("mobile-menu").classList.remove("open");
+        setTimeout(initRevealObserver, 200);
+      }
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => navigateTo(item.dataset.page));
+      });
+
+      document.querySelector(".btn-glow")?.addEventListener("click", () => navigateTo("shop"));
+
+      document.getElementById("mobile-menu-btn").addEventListener("click", () => {
+        document.getElementById("mobile-menu").classList.toggle("open");
+      });
+
+      document.querySelectorAll(".accordion-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector(".accordion-icon");
+          const isOpen = content.classList.contains("open");
+
+          document.querySelectorAll(".accordion-content").forEach((c) => c.classList.remove("open"));
+          document.querySelectorAll(".accordion-icon").forEach((i) => i.classList.remove("open"));
+          document.querySelectorAll(".accordion-btn").forEach((b) => b.setAttribute("aria-expanded", "false"));
+
+          if (!isOpen) {
+            content.classList.add("open");
+            icon.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      document.getElementById("contact-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const success = document.getElementById("form-success");
+        success.style.display = "block";
+        e.target.reset();
+        setTimeout(() => (success.style.display = "none"), 4000);
+      });
+
+      function initRevealObserver() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+        );
+
+        document.querySelectorAll(".reveal, .stagger-children").forEach((el) => {
+          if (!el.classList.contains("visible")) observer.observe(el);
+          else {
+            el.classList.remove("visible");
+            observer.observe(el);
+          }
+        });
+      }
+
+      applyConfig(defaultConfig);
+      initRevealObserver();
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
