@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpreTech MacroPad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Outfit", sans-serif;
+        background: linear-gradient(180deg, #05050a 0%, #090915 45%, #040407 100%);
+        color: #f5f5f7;
+      }
+      .hero-glow {
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(100, 100, 255, 0.18) 0%, transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+      .gradient-border {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+      }
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0.02),
+          rgba(100, 100, 255, 0.1)
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.08),
+          transparent
+        );
+      }
+      .pad-shell {
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 35px;
+        background: #18181b;
+        border-radius: 40px;
+        box-shadow:
+          0 20px 50px rgba(0, 0, 0, 0.5),
+          inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        border: 1px solid #27272a;
+      }
+      .pad-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .brand-display {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 10px;
+      }
+      .brand-main {
+        font-weight: 900;
+        font-size: 20px;
+        color: #fff;
+      }
+      .brand-sub {
+        font-size: 9px;
+        color: #6366f1;
+        letter-spacing: 0.25em;
+        margin-top: 4px;
+        font-weight: 700;
+      }
+      .key {
+        aspect-ratio: 1;
+        background: #2d2d35;
+        border-radius: 22px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #e4e4e7;
+        font-size: 22px;
+        transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+        border: 1px solid #4a4a52;
+        box-shadow:
+          0 6px 0 #18181b,
+          0 8px 10px rgba(0, 0, 0, 0.3);
+      }
+      .key:hover {
+        background: #3f3f46;
+        border-color: #6366f1;
+      }
+      .key:active {
+        transform: translateY(4px);
+      }
+      .key::after {
+        content: attr(data-label);
+        font-size: 8px;
+        margin-top: 8px;
+        letter-spacing: 0.15em;
+        opacity: 0.9;
+        font-weight: 600;
+      }
+      .output-screen {
+        margin-top: 35px;
+        padding: 24px;
+        background: #000;
+        border-radius: 22px;
+        border: 1px solid #4a4a52;
+        color: #f5f5f7;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.5);
+      }
+      .cursor {
+        animation: blink 1s step-end infinite;
+        color: #6366f1;
+        margin-left: 2px;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="relative text-center px-6 pt-28 pb-20">
+        <div class="hero-glow"></div>
+        <div class="relative max-w-5xl mx-auto">
+          <p class="text-xs tracking-[0.3em] uppercase text-indigo-300/70 mb-4">
+            Featured Product
+          </p>
+          <h1
+            class="font-semibold"
+            style="
+              font-family: 'Sora', sans-serif;
+              font-size: clamp(2.2rem, 6vw, 4.2rem);
+              letter-spacing: -0.03em;
+            "
+          >
+            SpreTech MacroPad
+          </h1>
+          <p class="text-white/60 mt-3 text-lg">Precision at your fingertips.</p>
+
+          <div
+            class="gradient-border mx-auto mt-12 mb-8"
+            style="
+              width: min(88%, 420px);
+              aspect-ratio: 16/9;
+              background: linear-gradient(145deg, #0a0a1a 0%, #111128 50%, #0a0a1a 100%);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 24px;
+            "
+          >
+            <img
+              src="macropad.png"
+              alt="SpreTech MacroPad"
+              style="width: 55%; height: auto; object-fit: contain; border-radius: 14px"
+            />
+          </div>
+
+          <p
+            class="font-semibold"
+            style="font-family: 'Sora', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem)"
+          >
+            ₹2,400
+          </p>
+          <p class="text-white/45 text-sm mt-1">Inclusive of all taxes</p>
+        </div>
+      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <section class="px-6 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2
+            class="text-center font-semibold mb-10"
+            style="
+              font-family: 'Sora', sans-serif;
+              font-size: clamp(1.6rem, 4vw, 2.4rem);
+              letter-spacing: -0.02em;
+            "
+          >
+            MacroPad Details
+          </h2>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <p class="text-2xl font-semibold">10</p>
+              <p class="text-xs text-white/50 mt-2">Programmable Keys</p>
+            </div>
+            <div>
+              <p class="text-2xl font-semibold">USB-C</p>
+              <p class="text-xs text-white/50 mt-2">Connectivity</p>
+            </div>
+            <div>
+              <p class="text-2xl font-semibold">Custom App</p>
+              <p class="text-xs text-white/50 mt-2">Control Software</p>
+            </div>
+            <div>
+              <p class="text-2xl font-semibold">Plug &amp; Play</p>
+              <p class="text-xs text-white/50 mt-2">Zero Setup</p>
+            </div>
+          </div>
+
+          <div class="mt-12 gradient-border p-6" style="background: rgba(255, 255, 255, 0.02)">
+            <p class="text-white/70 leading-7">
+              Compact 10-key programmable macropad with custom control app and USB-C
+              connectivity. Built for everyday automation, quick shortcuts, and efficient
+              workflows.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <section class="px-6 py-16">
+        <div class="max-w-5xl mx-auto text-center">
+          <h2
+            class="font-semibold mb-6"
+            style="
+              font-family: 'Sora', sans-serif;
+              font-size: clamp(1.6rem, 4vw, 2.4rem);
+              letter-spacing: -0.02em;
+            "
+          >
+            Interface Preview
+          </h2>
+          <div
+            class="gradient-border mx-auto"
+            style="
+              width: min(100%, 720px);
+              background: linear-gradient(145deg, #0a0a1a, #111128);
+              border-radius: 28px;
+              padding: 12px;
+            "
+          >
+            <img
+              src="homescreen.jpeg"
+              alt="SpreTech Smart Hardware Interface"
+              style="width: 100%; height: auto; border-radius: 18px; object-fit: cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <section class="px-6 py-16">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2
+            class="font-semibold mb-4"
+            style="
+              font-family: 'Sora', sans-serif;
+              font-size: clamp(1.6rem, 4vw, 2.4rem);
+              letter-spacing: -0.02em;
+            "
+          >
+            Help Interface
+          </h2>
+          <p class="text-white/50 mb-10">
+            MacroPad-style support interaction panel.
+          </p>
+          <div class="pad-shell">
+            <div class="pad-grid">
+              <div class="brand-display">
+                <div class="brand-main">SPRETECH</div>
+                <div class="brand-sub">V.09 PRO</div>
+              </div>
+              <div class="key" data-id="support" data-label="HELP">?</div>
+              <div class="key" data-id="comp" data-label="OS">⌘</div>
+              <div class="key" data-id="soft" data-label="CODE">⚡</div>
+              <div class="key" data-id="setup" data-label="CORE">⚙</div>
+              <div class="key" data-id="use" data-label="FLOW">►</div>
+              <div class="key" data-id="build" data-label="BODY">∞</div>
+              <div class="key" data-id="sync" data-label="SYNC">↑</div>
+              <div class="key" data-id="secure" data-label="SAFE">🛡</div>
+              <div class="key" data-id="group" data-label="TEAM">👥</div>
+              <div class="key" data-id="log" data-label="DATA">✉</div>
+            </div>
+            <div id="output-screen" class="output-screen">
+              <span class="type-text">System ready...</span>
+              <span class="cursor">_</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider w-full"></div>
+
+      <section class="px-6 py-16">
+        <div class="max-w-3xl mx-auto">
+          <div class="gradient-border p-8" style="background: rgba(255, 255, 255, 0.02)">
+            <h2 class="text-2xl font-semibold" style="font-family: 'Sora', sans-serif">
+              Pre-Book Now
+            </h2>
+            <p class="text-indigo-300 mt-2">First 10 customers - ₹1999</p>
+
+            <form id="prebook-form" class="mt-6 space-y-3">
+              <input
+                type="text"
+                id="pb-name"
+                placeholder="Name"
+                required
+                class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10"
+              />
+              <input
+                type="tel"
+                id="pb-phone"
+                placeholder="WhatsApp Number"
+                required
+                class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10"
+              />
+              <input
+                type="email"
+                id="pb-email"
+                placeholder="Email (Optional)"
+                class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10"
+              />
+              <button
+                type="submit"
+                class="w-full py-3 rounded-lg font-medium"
+                style="background: #4a4aff; color: #fff"
+              >
+                Pre-Book Now
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const data = {
+        support: "INITIATING: Secure support handshake...",
+        comp: "DETECTED: Universal architecture active.",
+        soft: "LOADED: Driver stack v9.0 operational.",
+        setup: "READY: Core configuration unlocked.",
+        use: "ACTIVE: Workflow automation running.",
+        build: "STATUS: Hardware thermal stability 99%.",
+        sync: "SYNCING: Local nodes connected.",
+        secure: "ACTIVE: Encryption layer enabled.",
+        group: "CONNECTING: Dev-cluster online.",
+        log: "READY: Telemetry stream accepting data.",
+      };
+
+      function updateOutput(id) {
+        const screen = document.getElementById("output-screen");
+        const msg = data[id];
+        let i = 0;
+        screen.innerHTML = "";
+        const interval = setInterval(() => {
+          screen.innerHTML += msg.charAt(i);
+          i++;
+          if (i >= msg.length) {
+            clearInterval(interval);
+            screen.innerHTML += '<span class="cursor">_</span>';
+          }
+        }, 30);
+      }
+
+      document
+        .querySelectorAll(".key")
+        .forEach((k) => k.addEventListener("click", () => updateOutput(k.dataset.id)));
+
+      document.getElementById("prebook-form")?.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("pb-name").value;
+        const phone = document.getElementById("pb-phone").value;
+        const email = document.getElementById("pb-email").value || "Not provided";
+
+        const msg = `SpreTech Macropad Pre-Booking
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}`;
+
+        const url = "https://wa.me/919042750118?text=" + encodeURIComponent(msg);
+        window.open(url, "_blank");
+      });
+    </script>
+  </body>
+</html>

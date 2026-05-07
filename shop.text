@@ -1,0 +1,84 @@
+ <div
+                class="gradient-border card-hover"
+                style="
+                  background: rgba(255, 255, 255, 0.02);
+                  border-radius: 20px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    aspect-ratio: 4/3;
+                    background: linear-gradient(145deg, #0a0a1a, #111128);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <span style="font-size: 130px">🤖</span>
+                </div>
+                <div class="p-6">
+                  <h3
+                    style="
+                      font-family: &quot;Sora&quot;, sans-serif;
+                      font-weight: 600;
+                    "
+                  >
+                    MobiArm
+                  </h3>
+                  <p class="text-sm text-white/45 mt-2">
+                    Intelligent robotic arm with precise control systems and
+                    adaptive movement.
+                  </p>
+                  <div class="flex items-center justify-between mt-5">
+                    <span class="font-semibold text-lg">Coming Soon</span>
+                    <span
+                      class="px-4 py-2 rounded-full text-xs font-medium bg-white/10 text-white/50"
+                      >Pre-order</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="gradient-border card-hover"
+                style="
+                  background: rgba(255, 255, 255, 0.02);
+                  border-radius: 20px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    aspect-ratio: 4/3;
+                    background: linear-gradient(145deg, #0a0a1a, #111128);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <img
+                    src="custapp.png"
+                    alt="SpreTech Custom App"
+                    style="width: 220px; height: auto; object-fit: contain"
+                  />
+                </div>
+                <div class="p-6">
+                  <h3
+                    style="
+                      font-family: &quot;Sora&quot;, sans-serif;
+                      font-weight: 600;
+                    "
+                  >
+                    Custom App
+                  </h3>
+                  <p class="text-sm text-white/45 mt-2">
+                    We are constantly innovating. Stay tuned for upcoming
+                    electronic gadgets.
+                  </p>
+                  <div class="flex items-center justify-between mt-5">
+                    <span class="font-semibold text-lg">TBA</span>
+                    <span
+                      class="px-4 py-2 rounded-full text-xs font-medium bg-white/10 text-white/50"
+                      >Notify Me</span
+                    >
+                  </div>
