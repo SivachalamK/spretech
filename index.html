@@ -1732,133 +1732,141 @@
                 </p>
               </div>
             </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 80px;
+                flex-wrap: wrap;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 60px 20px;
+              "
+            >
+              <!-- VIDEO CARD -->
+              <a
+                href="https://youtube.com/shorts/7FntMD7DAik?si=NkttefdKBJdie6TO"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="display: block; text-decoration: none; flex: 0 0 380px"
+              >
+                <div
+                  style="
+                    position: relative;
+                    aspect-ratio: 9/16;
+                    border-radius: 32px;
+                    overflow: hidden;
+                    background: url(&quot;https://i.ytimg.com/vi/7FntMD7DAik/maxresdefault.jpg&quot;)
+                      center center / cover;
+                    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+                    cursor: pointer;
+                  "
+                >
+                  <!-- Overlay -->
+                  <div
+                    style="
+                      position: absolute;
+                      inset: 0;
+                      background: linear-gradient(
+                        to top,
+                        rgba(0, 0, 0, 0.8),
+                        rgba(0, 0, 0, 0.15)
+                      );
+                    "
+                  ></div>
 
-            <a
-  href="https://youtube.com/shorts/7FntMD7DAik?si=NkttefdKBJdie6TO"
-  target="_blank"
-  rel="noopener noreferrer"
-  style="
-    display:block;
-    width:100%;
-    max-width:420px;
-    margin:auto;
-    text-decoration:none;
-  "
->
-  <div
-    style="
-      position:relative;
-      aspect-ratio:9/16;
-      border-radius:28px;
-      overflow:hidden;
-      background:url('https://i.ytimg.com/vi/7FntMD7DAik/maxresdefault.jpg') center/cover;
-      box-shadow:0 25px 60px rgba(0,0,0,0.25);
-      transition:transform .3s ease;
-      cursor:pointer;
-    "
-  >
-    <!-- Dark Overlay -->
-    <div
-      style="
-        position:absolute;
-        inset:0;
-        background:linear-gradient(
-          to top,
-          rgba(0,0,0,.75),
-          rgba(0,0,0,.15)
-        );
-      "
-    ></div>
+                  ```
+                  <!-- YouTube Badge -->
+                  <div
+                    style="
+                      position: absolute;
+                      top: 20px;
+                      right: 20px;
+                      background: #ff0000;
+                      color: white;
+                      padding: 8px 14px;
+                      border-radius: 999px;
+                      font-size: 13px;
+                      font-weight: 700;
+                      z-index: 2;
+                    "
+                  >
+                    YouTube
+                  </div>
 
-    <!-- Title -->
-    <div
-      style="
-        position:absolute;
-        left:24px;
-        bottom:24px;
-        color:white;
-        z-index:2;
-      "
-    >
-      <h3
-        style="
-          margin:0;
-          font-size:24px;
-          font-weight:700;
-        "
-      >
-        SpreTech Macropad
-      </h3>
+                  <!-- Play Button -->
+                  <div
+                    style="
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      transform: translate(-50%, -50%);
+                      width: 90px;
+                      height: 90px;
+                      border-radius: 50%;
+                      background: rgba(255, 255, 255, 0.15);
+                      backdrop-filter: blur(12px);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      z-index: 2;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 0;
+                        height: 0;
+                        border-top: 16px solid transparent;
+                        border-bottom: 16px solid transparent;
+                        border-left: 26px solid white;
+                        margin-left: 6px;
+                      "
+                    ></div>
+                  </div>
 
-      <p
-        style="
-          margin:6px 0 0;
-          opacity:.85;
-          font-size:14px;
-        "
-      >
-        Watch product demo on YouTube
-      </p>
-    </div>
+                  <!-- Video Info -->
+                  <div
+                    style="
+                      position: absolute;
+                      left: 24px;
+                      bottom: 24px;
+                      color: white;
+                      z-index: 2;
+                    "
+                  >
+                    <h3 style="margin: 0; font-size: 24px; font-weight: 800">
+                      SpreTech Macropad
+                    </h3>
 
-    <!-- Play Button -->
-    <div
-      style="
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        width:90px;
-        height:90px;
-        border-radius:50%;
-        background:rgba(255,255,255,.15);
-        backdrop-filter:blur(10px);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        z-index:2;
-      "
-    >
-      <div
-        style="
-          width:0;
-          height:0;
-          border-top:16px solid transparent;
-          border-bottom:16px solid transparent;
-          border-left:26px solid white;
-          margin-left:6px;
-        "
-      ></div>
-    </div>
+                    <p style="margin: 8px 0 0; opacity: 0.9; font-size: 14px">
+                      Watch Product Demo on YouTube
+                    </p>
+                  </div>
+                </div>
+                ```
+              </a>
 
-    <!-- YouTube Badge -->
-    <div
-      style="
-        position:absolute;
-        top:18px;
-        right:18px;
-        background:#ff0000;
-        color:white;
-        padding:8px 14px;
-        border-radius:999px;
-        font-size:13px;
-        font-weight:600;
-        z-index:2;
-      "
-    >
-      YouTube
-    </div>
-  </div>
-</a>
-                <!-- Quote -->
-                <div style="flex: 1; min-width: 300px; max-width: 500px">
-                  <p
+              <!-- QUOTE CONTENT -->
+
+              <div
+                style="
+                  flex: 1;
+                  min-width: 320px;
+                  max-width: 560px;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <div>
+                  <h2
                     style="
                       font-family: &quot;Sora&quot;, sans-serif;
-                      font-size: clamp(1.8rem, 4vw, 2.8rem);
+                      font-size: clamp(2.8rem, 5vw, 4.8rem);
                       font-weight: 900;
-                      line-height: 1.1;
-                      letter-spacing: -0.03em;
+                      line-height: 1.05;
+                      letter-spacing: -0.04em;
+                      margin: 0;
                       background: linear-gradient(
                         135deg,
                         #ffed4e,
@@ -1868,14 +1876,41 @@
                       -webkit-background-clip: text;
                       background-clip: text;
                       color: transparent;
-                      text-shadow: 0 0 30px rgba(255, 237, 78, 0.3);
-                      margin: 0;
                     "
                   >
-                    Automate your workflow and<br />
-                    <span style="font-size: 1.2em">Dominate your system.</span>
+                    Automate your workflow
+                  </h2>
+
+                  ```
+                  <h2
+                    style="
+                      font-family: &quot;Sora&quot;, sans-serif;
+                      font-size: clamp(2.4rem, 4vw, 4.2rem);
+                      font-weight: 800;
+                      line-height: 1.1;
+                      margin: 12px 0 0;
+                      color: white;
+                    "
+                  >
+                    Dominate your system.
+                  </h2>
+
+                  <p
+                    style="
+                      margin-top: 24px;
+                      font-size: 18px;
+                      line-height: 1.8;
+                      color: rgba(255, 255, 255, 0.75);
+                      max-width: 500px;
+                    "
+                  >
+                    Experience the next generation of productivity with the
+                    SpreTech Macropad. Launch applications instantly, automate
+                    repetitive actions, and streamline your workflow with a
+                    premium programmable control surface.
                   </p>
                 </div>
+                ```
               </div>
             </div>
 
